@@ -206,7 +206,7 @@ class Keychain {
    * @param {number} [size = 2048] - The key size in bits. Used for rsa keys only.
    * @returns {Promise<KeyInfo>}
    */
-  async createKey (name, type, size = 2048) {
+  async createKey (name, type, size = 2048, optPrivateKey) {
     const self = this
 
     if (!validateKeyName(name) || name === 'self') {
@@ -234,7 +234,7 @@ class Keychain {
     let keyInfo
     try {
       // @ts-ignore Differences between several crypto return types need to be fixed in libp2p-crypto
-      const keypair = await crypto.keys.generateKeyPair(type, size)
+      const keypair = await crypto.keys.generateKeyPair(type, size, optPrivateKey)
       const kid = await keypair.id()
       /** @type {string} */
       const dek = privates.get(this).dek
