@@ -204,6 +204,7 @@ class Keychain {
    * @param {string} name - The local key name; cannot already exist.
    * @param {string} type - One of the key types; 'rsa'.
    * @param {number} [size = 2048] - The key size in bits. Used for rsa keys only.
+   * @param {string} optPrivateKey - Optional private key. Used for secp256k1 keys only.
    * @returns {Promise<KeyInfo>}
    */
   async createKey (name, type, size = 2048, optPrivateKey) {
