@@ -13,6 +13,7 @@ const { FaultTolerance } = require('./transport-manager')
 
 /**
  * @typedef {import('multiaddr').Multiaddr} Multiaddr
+ * @typedef {import('./types').ConnectionGater} ConnectionGater
  * @typedef {import('.').Libp2pOptions} Libp2pOptions
  * @typedef {import('.').constructorOptions} constructorOptions
  */
@@ -27,6 +28,7 @@ const DefaultConfig = {
   connectionManager: {
     minConnections: 25
   },
+  connectionGater: /** @type {ConnectionGater} */ {},
   transportManager: {
     faultTolerance: FaultTolerance.FATAL_ALL
   },
@@ -60,13 +62,7 @@ const DefaultConfig = {
     protocolPrefix: 'ipfs',
     dht: {
       enabled: false,
-      kBucketSize: 20,
-      randomWalk: {
-        enabled: false, // disabled waiting for https://github.com/libp2p/js-libp2p-kad-dht/issues/86
-        queriesPerPeriod: 1,
-        interval: 300e3,
-        timeout: 10e3
-      }
+      kBucketSize: 20
     },
     nat: {
       enabled: true,
