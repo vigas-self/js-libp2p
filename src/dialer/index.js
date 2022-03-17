@@ -239,6 +239,7 @@ class Dialer {
     })
 
     // Combine the timeout signal and options.signal, if provided
+    // @ts-ignore
     const timeoutController = new TimeoutController(this.timeout)
     const signals = [timeoutController.signal]
     options.signal && signals.push(options.signal)

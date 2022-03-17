@@ -115,6 +115,7 @@ class NatManager {
       const client = this._getClient()
       const publicIp = this._externalIp || await client.externalIp()
 
+      // @ts-ignore
       if (isPrivateIp(publicIp)) {
         throw new Error(`${publicIp} is private - please set config.nat.externalIp to an externally routable IP or ensure you are not behind a double NAT`)
       }
